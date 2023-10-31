@@ -5,7 +5,7 @@ The PayOne golang P2P SDK provides:
 - HTTP clients for the json-rpc and sse (server-side-events) APIs
 - Protocol messages types for interacting with the P2P API.
 
-## Examples
+## Usage Examples
 
 - [Fetch Banks Registry](https://github.com/payone-tech/go-p2p-sdk/tree/main/examples/rpc-banks-registry)
 - [Fetch Currencies Registry](https://github.com/payone-tech/go-p2p-sdk/tree/main/examples/rpc-currencies-registry)
