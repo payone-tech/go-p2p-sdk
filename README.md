@@ -15,6 +15,7 @@ The PayOne golang P2P SDK provides:
 - [Cancel Deposit Order](https://github.com/payone-tech/go-p2p-sdk/tree/main/examples/rpc-order-deposit-cancel)
 - [Get Order Status](https://github.com/payone-tech/go-p2p-sdk/tree/main/examples/rpc-order-status)
 - [Get Report For 24hr](https://github.com/payone-tech/go-p2p-sdk/tree/main/examples/rpc-report)
+- [Subscribe on Order Events](https://github.com/payone-tech/go-p2p-sdk/tree/main/examples/sse-events)
 
 ## Quick Start
 
