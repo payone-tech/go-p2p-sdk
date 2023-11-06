@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"context"
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -57,6 +58,15 @@ func main() {
 					"comment: %s\nevent: %s\ndata: %s\nretry: %s\n\n",
 					string(event.Comment), string(event.Event),
 					string(event.Data), string(event.Retry))
+				if bytes.Compare(event.Event, []byte("order")) == 0 {
+					var order *proto.OrderResponse
+					err = json.Unmarshal(event.Data, &order)
+					if err != nil {
+						log.Fatal("unmarshal order object has failed: %v", err)
+					}
+					fmt.Printf("uuid: %q\n", order.UUID)
+					fmt.Printf("status: %q\n", order.Status)
+				}
 			case err := <-cherr:
 				fmt.Println(err)
 				cancel()
