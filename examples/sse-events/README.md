@@ -21,16 +21,19 @@ comment:
 event: order
 data: {"uuid":"90dcb27e-cba9-4307-b889-ec81d8152d56","status":"created", …}
 retry:
+Debug: got order "90dcb27e-cba9-4307-b889-ec81d8152d56" event "created" status
 
 comment:
 event: order
 data: {"uuid":"90dcb27e-cba9-4307-b889-ec81d8152d56","status":"pending", …}
 retry:
+Debug: got order "90dcb27e-cba9-4307-b889-ec81d8152d56" event "pending" status
 
 comment:
 event: order
 data: {"uuid":"90dcb27e-cba9-4307-b889-ec81d8152d56","status":"success", …}
 retry:
+Debug: got order "90dcb27e-cba9-4307-b889-ec81d8152d56" event "success" status
 
 …
 ```

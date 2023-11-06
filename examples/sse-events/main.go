@@ -62,10 +62,11 @@ func main() {
 					var order *proto.OrderResponse
 					err = json.Unmarshal(event.Data, &order)
 					if err != nil {
-						log.Fatal("unmarshal order object has failed: %v", err)
+						log.Fatalf("unmarshal order object has failed: %v", err)
 					}
-					fmt.Printf("uuid: %q\n", order.UUID)
-					fmt.Printf("status: %q\n", order.Status)
+					fmt.Printf(
+						"Debug: got order %q event %q status\n",
+						order.UUID, order.Status)
 				}
 			case err := <-cherr:
 				fmt.Println(err)
