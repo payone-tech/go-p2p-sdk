@@ -2,9 +2,13 @@ package main
 
 import (
 	"bytes"
+	"context"
 	"fmt"
 	"log"
 	"net/http"
+	"os/signal"
+	"sync"
+	"syscall"
 
 	"github.com/payone-tech/go-p2p-sdk/client/api"
 	"github.com/payone-tech/go-p2p-sdk/client/proto"
@@ -12,6 +16,10 @@ import (
 )
 
 func main() {
+	ctx, cancel := signal.NotifyContext(
+		context.Background(),
+		syscall.SIGINT, syscall.SIGTERM)
+
 	cfg := config.Params{}
 	err := cfg.ReadEnv()
 	if err != nil {
@@ -25,23 +33,41 @@ func main() {
 		cfg.ClientCert,
 		(*http.Client)(nil))
 
-	ch, cherr, err := client.EventsStream()
+	ch, cherr, err := client.EventsStream(ctx)
 	if err != nil {
 		log.Fatalf("open events stream has failed: %v", err)
 	}
 
-	for b := range ch {
-		event := parseEvent(b)
-		fmt.Printf(
-			"comment: %s\nevent: %s\ndata: %s\nretry: %s\n\n",
-			string(event.Comment), string(event.Event),
-			string(event.Data), string(event.Retry))
-	}
+	var wg sync.WaitGroup
 
-	err = <-cherr
-	if err != nil {
-		log.Fatal(err)
-	}
+	wg.Add(1)
+	go func(ch <-chan []byte, cherr <-chan error) {
+		defer wg.Done()
+
+		for {
+			select {
+			case <-ctx.Done():
+				return
+			case b, ok := <-ch:
+				if !ok {
+					continue
+				}
+				event := parseEvent(b)
+				fmt.Printf(
+					"comment: %s\nevent: %s\ndata: %s\nretry: %s\n\n",
+					string(event.Comment), string(event.Event),
+					string(event.Data), string(event.Retry))
+			case err := <-cherr:
+				fmt.Println(err)
+				cancel()
+				return
+			default:
+			}
+		}
+	}(ch, cherr)
+
+	wg.Wait()
+	cancel()
 }
 
 var (

@@ -124,7 +124,9 @@ func (c *Client) CallRpc(
 }
 
 // EventsStream performs a request to read server-side-events stream.
-func (c *Client) EventsStream() (<-chan []byte, <-chan error, error) {
+func (c *Client) EventsStream(
+	ctx context.Context,
+) (<-chan []byte, <-chan error, error) {
 	req, err := http.NewRequest("GET", c.sseEventsUrl, nil)
 	if err != nil {
 		return nil, nil, err
@@ -145,6 +147,14 @@ func (c *Client) EventsStream() (<-chan []byte, <-chan error, error) {
 	go func(ch chan<- []byte, cherr chan<- error) {
 		var buf bytes.Buffer
 		for {
+			select {
+			case <-ctx.Done():
+				close(ch)
+				close(cherr)
+				return
+			default:
+			}
+
 			b := make([]byte, 1024*4)
 			n, err := resp.Body.Read(b)
 			if err != nil {
