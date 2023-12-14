@@ -14,6 +14,7 @@ type OrderResponse struct {
 	CreatedTS    int64            `json:"created_ts"`
 	ExpireTS     int64            `json:"expire_ts"`
 	UpdatedTS    int64            `json:"updated_ts"`
+	ClientUUID   *string          `json:"client_uuid,omitempty"`
 	ClientTxID   string           `json:"client_tx_id"`
 	ClientUserID *string          `json:"client_user_id,omitempty"`
 	Sum          string           `json:"sum"`
@@ -22,4 +23,10 @@ type OrderResponse struct {
 	Bank         *BankResponse    `json:"bank,omitempty"`
 	Card         *CardResponse    `json:"card,omitempty"`
 	Currency     CurrencyResponse `json:"currency"`
+	CardTxs      []CardTxResponse `json:"cards_txs,omitempty"`
+}
+
+// CardTxResponse model.
+type CardTxResponse struct {
+	Sum string `json:"sum"`
 }
