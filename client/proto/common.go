@@ -36,8 +36,9 @@ type CurrencyResponse struct {
 
 // CardResponse protocol message
 type CardResponse struct {
-	UUID   string `json:"uuid"`
-	Number string `json:"number"`
+	UUID   string  `json:"uuid"`
+	Number string  `json:"number"`
+	Name   *string `json:"name"`
 }
 
 // CurrenciesResponse protocol message
