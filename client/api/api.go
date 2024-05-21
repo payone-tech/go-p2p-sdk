@@ -21,16 +21,16 @@ import (
 const (
 	domain = "api.payone"
 
-	MethodRegistryBanks       = "client/registry/banks"
-	MethodRegistryCurrencies  = "client/registry/currencies"
-	MethodOrderWithdrawCreate = "client/order/withdraw/create"
-	MethodOrderWithdrawCancel = "client/order/withdraw/cancel"
-	MethodOrderDepositCreate  = "client/order/deposit/create"
-	MethodOrderDepositCancel  = "client/order/deposit/cancel"
-	MethodOrderStatus         = "client/order/status"
-	MethodReportToday         = "client/report/today"
-	MethodReportYesterday     = "client/report/yesterday"
-	MethodReport24hr          = "client/report/24hr"
+	MethodRegistryPaymentMethods = "client/registry/payment_methods"
+	MethodRegistryCurrencies     = "client/registry/currencies"
+	MethodOrderWithdrawCreate    = "client/order/withdraw/create"
+	MethodOrderWithdrawCancel    = "client/order/withdraw/cancel"
+	MethodOrderDepositCreate     = "client/order/deposit/create"
+	MethodOrderDepositCancel     = "client/order/deposit/cancel"
+	MethodOrderStatus            = "client/order/status"
+	MethodReportToday            = "client/report/today"
+	MethodReportYesterday        = "client/report/yesterday"
+	MethodReport24hr             = "client/report/24hr"
 )
 
 // Client manages the RPC/SSE interface for a calling user.

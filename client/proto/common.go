@@ -15,16 +15,16 @@ type Event struct {
 	Retry   []byte
 }
 
-// BankResponse protocol message
-type BankResponse struct {
+// PaymentMethodResponse protocol message
+type PaymentMethodResponse struct {
 	UUID  string `json:"uuid"`
 	Title string `json:"title"`
 }
 
-// BanksResponse protocol message
-type BanksResponse struct {
-	Count int            `json:"count"`
-	Banks []BankResponse `json:"banks"`
+// PaymentMethodsResponse protocol message
+type PaymentMethodsResponse struct {
+	Count          int                     `json:"count"`
+	PaymentMethods []PaymentMethodResponse `json:"payment_methods"`
 }
 
 // CurrencyResponse protocol message
