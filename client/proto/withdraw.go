@@ -5,7 +5,7 @@ type CreateWithdrawRequest struct {
 	ClientTxID        string  `json:"client_tx_id"`
 	ClientUserID      *string `json:"client_user_id"`
 	Sum               string  `json:"sum"`
-	Pan               string  `json:"pan"`
+	AccountNumber     string  `json:"account_number"`
 	Name              *string `json:"name"`
 	PaymentMethodUUID *string `json:"payment_method_uuid"`
 	CurrencyUUID      string  `json:"currency_uuid"`
@@ -21,7 +21,7 @@ type CreateWithdrawResponse struct {
 	ClientTxID    string                 `json:"client_tx_id"`
 	ClientUserID  *string                `json:"client_user_id,omitempty"`
 	Sum           string                 `json:"sum"`
-	Pan           string                 `json:"pan"`
+	AccountNumber string                 `json:"account_number"`
 	Name          *string                `json:"name,omitempty"`
 	PaymentMethod *PaymentMethodResponse `json:"payment_method,omitempty"`
 	Currency      CurrencyResponse       `json:"currency"`

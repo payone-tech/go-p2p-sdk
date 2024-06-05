@@ -18,15 +18,15 @@ type OrderResponse struct {
 	ClientTxID    string                 `json:"client_tx_id"`
 	ClientUserID  *string                `json:"client_user_id,omitempty"`
 	Sum           string                 `json:"sum"`
-	Pan           string                 `json:"pan"`
+	AccountNumber string                 `json:"account"`
 	Name          *string                `json:"name,omitempty"`
 	PaymentMethod *PaymentMethodResponse `json:"payment_method,omitempty"`
-	Card          *CardResponse          `json:"card,omitempty"`
+	Account       *AccountResponse       `json:"account,omitempty"`
 	Currency      CurrencyResponse       `json:"currency"`
-	CardTxs       []CardTxResponse       `json:"cards_txs,omitempty"`
+	AccountTxs    []AccountTxResponse    `json:"accounts_txs,omitempty"`
 }
 
-// CardTxResponse model.
-type CardTxResponse struct {
+// AccountTxResponse model.
+type AccountTxResponse struct {
 	Sum string `json:"sum"`
 }

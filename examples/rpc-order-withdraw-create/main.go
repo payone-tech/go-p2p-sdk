@@ -26,7 +26,7 @@ func main() {
 		cfg.ClientCert,
 		(*http.Client)(nil))
 
-	k := []string{"client_tx_id", "sum", "pan", "currency_uuid"}
+	k := []string{"client_tx_id", "sum", "account_number", "currency_uuid"}
 	kv := make(map[string]string, len(k))
 	for _, k := range k {
 		s, err := config.ReadInput(k)
@@ -37,10 +37,10 @@ func main() {
 	}
 
 	params := proto.CreateWithdrawRequest{
-		ClientTxID:   kv["client_tx_id"],
-		Sum:          kv["sum"],
-		Pan:          kv["pan"],
-		CurrencyUUID: kv["currency_uuid"],
+		ClientTxID:    kv["client_tx_id"],
+		Sum:           kv["sum"],
+		AccountNumber: kv["account_number"],
+		CurrencyUUID:  kv["currency_uuid"],
 	}
 
 	b, _ := json.Marshal(params)
